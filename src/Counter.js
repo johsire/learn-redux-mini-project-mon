@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // Import any action creators we will use in this component;
 // increment from dux/const = 
-import increment from './ducks/counter'
+import { increment, decrement } from './ducks/counter';
 
 class Counter extends Component {
   render() {
@@ -13,7 +13,7 @@ class Counter extends Component {
       // Use data from redux store
       // Use action creators to tell redux to change stuff
       // Both accessed through this.props.x;
-    const { currentValue, message, state, increment } = this.props;
+    const { currentValue, message, state, increment, decrement } = this.props;
     return (
       <div className="app">
         <section className="counter">
@@ -22,25 +22,25 @@ class Counter extends Component {
           <div className="counter__button-wrapper">
             <button
               className="counter__button increment-one"
-              onClick={() => increment + 1}
+              onClick={() => increment(1)}
             >
               +1
             </button>
             <button
               className="counter__button increment-five"
-              onClick={() => increment + 5}
+              onClick={() => increment(5)}
             >
               +5
             </button>
             <button
               className="counter__button decrement-one"
-              onClick={() => null}
+              onClick={() => decrement(1)}
             >
               -1
             </button>
             <button
               className="counter__button decrement-five"
-              onClick={() => null}
+              onClick={() => decrement(5)}
             >
               -5
             </button>
@@ -84,18 +84,15 @@ function getDataFromAppState(appState) {
 // 3
 // Set-up all action creators to put on props;
 const actionOutputs = {
-  increment: increment
-}
-
+  increment: increment,
+  decrement: decrement
+};
 
 // 4
 // Connect steps 2 & 3 together
-const connected = connect(getDataFromAppState, actionOutputs)
-
+const connected = connect(getDataFromAppState, actionOutputs );
 
 // 5
 // Connect step 4 to our component
-
-
 
 export default connected(Counter);

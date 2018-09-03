@@ -1,6 +1,5 @@
 import { createStore } from 'redux';
-import reducer from './ducks/counter';
-
+import reducer from './ducks/counter'
 
 const store = createStore(reducer);
 
